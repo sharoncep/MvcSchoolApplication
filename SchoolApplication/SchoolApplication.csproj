@@ -242,6 +242,7 @@
       <DependentUpon>SchoolDBModel.edmx</DependentUpon>
       <LastGenOutput>SchoolDBModel.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\MvcSchoolApp.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\CustomJs\Registration.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
