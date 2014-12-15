@@ -1,0 +1,44 @@
+﻿@model SchoolApplication.Models.UserRegistrationModel
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Registration Unsuccesful");
+    <div>
+        <fieldset>
+            <legend>Student Registration</legend>
+            <div>@Html.LabelFor(u => u.UserName)</div>
+            <div>@Html.TextBoxFor(u => u.UserName)
+                @Html.ValidationMessageFor(u => u.UserName)
+            </div>
+            <div>@Html.Label("Roll No")</div>
+            <div>@Html.TextBoxFor(u => u.RollNo)
+                @Html.ValidationMessageFor(u => u.RollNo)
+            </div>
+
+            <div>@Html.Label("Name")</div>
+            <div>@Html.TextBoxFor(u => u.Name)
+                @Html.ValidationMessageFor(u => u.Name)
+            </div>
+            <div>@Html.Label("Department")</div>
+            <div>@Html.DropDownListFor(u => u.DepartmentId, Model.GetDepartments())
+                @Html.ValidationMessageFor(u => u.DepartmentId)
+            </div>
+            <div>@Html.Label("DOB")</div>
+            <div>@Html.TextBoxFor(u => u.Dob, new { placeholder = "Select DOB", @type = "date" })
+                @Html.ValidationMessageFor(u => u.Dob)
+            </div>
+            <div>@Html.Label("Email")</div>
+            <div>@Html.TextBoxFor(u => u.Email)
+                @Html.ValidationMessageFor(u => u.Email)
+            </div>
+
+            <input type="submit" value="Register" />
+            <div>@ViewBag.SuccessMessage</div>
+        </fieldset>
+    </div>
+}

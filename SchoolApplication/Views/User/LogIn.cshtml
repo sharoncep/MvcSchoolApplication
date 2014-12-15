@@ -1,0 +1,27 @@
+﻿@model SchoolApplication.Models.UserLoginModel
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Username or password incorrect");
+    <div>
+        <fieldset>
+            <legend>Log In</legend>
+            <div>@Html.LabelFor(u => u.UserName)</div>
+            <div>@Html.TextBoxFor(u => u.UserName)
+                @Html.ValidationMessageFor(u => u.UserName)
+            </div>
+            <div>@Html.LabelFor(u => u.Password)</div>
+            <div>@Html.PasswordFor(u => u.Password)
+                @Html.ValidationMessageFor(u => u.Password)
+            </div>
+            <input type="submit" value="Log In" />
+            @Html.ActionLink("Register", "Registration", "User")
+            @Html.ActionLink("Forgot Password", "ForgotPassword", "User")
+        </fieldset>
+    </div>
+}

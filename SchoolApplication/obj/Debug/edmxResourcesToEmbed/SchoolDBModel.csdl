@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SchoolDBContext" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="SchoolDBModel.Department" />
+    <EntitySet Name="Logins" EntityType="SchoolDBModel.Login" />
+    <EntitySet Name="Students" EntityType="SchoolDBModel.Student" />
+    <EntitySet Name="Subjects" EntityType="SchoolDBModel.Subject" />
+    <EntitySet Name="Teachers" EntityType="SchoolDBModel.Teacher" />
+    <AssociationSet Name="FK__Student__Departm__2A4B4B5E" Association="SchoolDBModel.FK__Student__Departm__2A4B4B5E">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Subject__Departm__2D27B809" Association="SchoolDBModel.FK__Subject__Departm__2D27B809">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Subject" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Teacher__Departm__2B3F6F97" Association="SchoolDBModel.FK__Teacher__Departm__2B3F6F97">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Teacher__Subject__2C3393D0" Association="SchoolDBModel.FK__Teacher__Subject__2C3393D0">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="SchoolDBModel.FK__Student__Departm__2A4B4B5E" FromRole="Department" ToRole="Student" />
+    <NavigationProperty Name="Subjects" Relationship="SchoolDBModel.FK__Subject__Departm__2D27B809" FromRole="Department" ToRole="Subject" />
+    <NavigationProperty Name="Teachers" Relationship="SchoolDBModel.FK__Teacher__Departm__2B3F6F97" FromRole="Department" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="LoginId" />
+    </Key>
+    <Property Name="LoginId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Type="String" Name="PasswordSalt" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RollNo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="DateOfEnroll" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateOfPassOut" Type="DateTime" Precision="0" />
+    <Property Name="PhotoPath" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="SchoolDBModel.FK__Student__Departm__2A4B4B5E" FromRole="Student" ToRole="Department" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="SchoolDBModel.FK__Subject__Departm__2D27B809" FromRole="Subject" ToRole="Department" />
+    <NavigationProperty Name="Teachers" Relationship="SchoolDBModel.FK__Teacher__Subject__2C3393D0" FromRole="Subject" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="TeacherId" />
+    </Key>
+    <Property Name="TeacherId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="SubjectId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="SchoolDBModel.FK__Teacher__Departm__2B3F6F97" FromRole="Teacher" ToRole="Department" />
+    <NavigationProperty Name="Subject" Relationship="SchoolDBModel.FK__Teacher__Subject__2C3393D0" FromRole="Teacher" ToRole="Subject" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__Student__Departm__2A4B4B5E">
+    <End Role="Department" Type="SchoolDBModel.Department" Multiplicity="1" />
+    <End Role="Student" Type="SchoolDBModel.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Subject__Departm__2D27B809">
+    <End Role="Department" Type="SchoolDBModel.Department" Multiplicity="1" />
+    <End Role="Subject" Type="SchoolDBModel.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Teacher__Departm__2B3F6F97">
+    <End Role="Department" Type="SchoolDBModel.Department" Multiplicity="1" />
+    <End Role="Teacher" Type="SchoolDBModel.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Teacher__Subject__2C3393D0">
+    <End Role="Subject" Type="SchoolDBModel.Subject" Multiplicity="1" />
+    <End Role="Teacher" Type="SchoolDBModel.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
