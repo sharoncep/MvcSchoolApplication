@@ -22,6 +22,24 @@ namespace SchoolApplication.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult ChangePhoto(HttpPostedFile objFile)
+        {
+            if (objFile != null)
+            {
+                if (UtilityClass.ImageTools.IsImage(objFile))
+                {
+                    string fileName = "img_" + User.Identity.Name + System.IO.Path.GetExtension(objFile.FileName);
+                    string filePath = System.IO.Path.Combine(Server.MapPath("~/ProfilePhotos/Students"), fileName);
+                    objFile.SaveAs(filePath);
+                    return RedirectToAction("PersonalProfile", "StudentProfile");
+                }
+                ModelState.AddModelError("", "Please upload a valid image format having size below 1 MB.");
+            }
+            ModelState.AddModelError("", "Invalid Image file");
+            return View();
+        }
+
         [HttpGet]
         public ActionResult PersonalProfile()
         {
