@@ -1,0 +1,38 @@
+﻿@model SchoolApplication.Models.StudentProfileModel
+
+@{
+    ViewBag.Title = "PersonalProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_StudentHome")
+
+<img src="https://lh5.googleusercontent.com/-ZadaXoUTBfs/AAAAAAAAAAI/AAAAAAAAAAA/3rh5IMTHOzg/photo.jpg" alt="" width="151" height="151">
+@Html.ActionLink("Change Photo","ChangePhoto")
+
+<h2>PersonalProfile</h2>
+<table>
+    <tr>
+        <td>Roll No</td>
+        <td>@Model.StudentPersonalDetails.RollNo</td>
+        <td>Name</td>
+        <td>@Model.StudentPersonalDetails.Name</td>
+    </tr>
+    <tr>
+        <td>DOB</td>
+        <td>@Model.StudentPersonalDetails.DOB.ToShortDateString()</td>
+        <td>Department</td>
+        <td>@Model.Department</td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td>@Model.StudentPersonalDetails.Gender</td>
+        <td>Email</td>
+        <td>@Model.StudentPersonalDetails.Email</td>
+    </tr>
+    <tr>
+        <td>Enrollment Date</td>
+        <td>@Model.StudentPersonalDetails.DateOfEnroll.ToShortDateString()</td>
+        <td>Passout Date</td>
+        <td>@Model.StudentPersonalDetails.DateOfPassOut</td>
+    </tr>
+</table>

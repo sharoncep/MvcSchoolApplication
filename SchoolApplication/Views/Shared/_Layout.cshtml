@@ -14,15 +14,14 @@
         @Html.ActionLink("Logout", "LogOut", "User")
         <strong>@Html.Encode(" | ")</strong>
         @Html.ActionLink("Change Password", "ChangePassword", "StudentProfile")
+        
     }
     else
     {
-        <strong>@Html.Encode(User.Identity.Name)</strong>
         @Html.ActionLink("Login", "LogIn", "User")
-        <strong>@Html.Encode(User.Identity.Name)</strong>
         @Html.ActionLink(" | Register", "Registration", "User")
-        <strong>@Html.Encode(User.Identity.Name)</strong>
         @Html.ActionLink(" | Forgot Password", "ForgotPassword", "User")
+
     }
 
     @RenderBody()

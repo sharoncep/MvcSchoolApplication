@@ -20,8 +20,8 @@
                 @Html.ValidationMessageFor(u => u.Password)
             </div>
             <input type="submit" value="Log In" />
-            @Html.ActionLink("Register", "Registration", "User")
-            @Html.ActionLink("Forgot Password", "ForgotPassword", "User")
+            <div>@Html.ActionLink("Register", "Registration", "User") for new account</div>
+            <div>@Html.ActionLink("Forgot Password", "ForgotPassword", "User") if you forgot your username or password</div>
         </fieldset>
     </div>
 }

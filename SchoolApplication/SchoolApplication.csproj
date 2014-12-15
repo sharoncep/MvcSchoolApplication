@@ -139,6 +139,7 @@
     <Compile Include="Login.cs">
       <DependentUpon>SchoolDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StudentProfileModel.cs" />
     <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchoolDBModel.Context.cs">
@@ -279,6 +280,10 @@
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\StudentProfile\Home.cshtml" />
     <Content Include="Views\StudentProfile\ChangePassword.cshtml" />
+    <Content Include="Views\StudentProfile\PersonalProfile.cshtml" />
+    <Content Include="Views\StudentProfile\AcademicProfile.cshtml" />
+    <Content Include="Views\Shared\_StudentHome.cshtml" />
+    <Content Include="Views\StudentProfile\ChangePhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

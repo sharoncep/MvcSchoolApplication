@@ -127,27 +127,5 @@ namespace SchoolApplication.Models
         #endregion
     }
 
-    public class UserChangePasswordModel
-    {
-        #region Properties
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
-        public string CurrentPassword { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "New password")]
-        public string NewPassword { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "New password and confirmation does not match.")]
-        public string ConfirmPassword { get; set; }
-
-
-        #endregion
-    }
 
 }

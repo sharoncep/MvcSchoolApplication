@@ -13,8 +13,8 @@ namespace SchoolApplication.UtilityClass
         {
             GMailer mailer = new GMailer();
 
-            GMailer.GmailUsername = "kensteve4ever@gmail.com";
-            GMailer.GmailPassword = "123qweAadmin";
+            GMailer.GmailUsername = "sharon.github@gmail.com";
+            GMailer.GmailPassword = "123abcAadmin";
 
             mailer.ToEmail = toEmail;
             mailer.Subject = subject;
