@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace SchoolApplication.Models
+namespace SchoolApplication.Areas.Student.Models
 {
     public class StudentProfileModel
     {
@@ -12,7 +10,12 @@ namespace SchoolApplication.Models
 
         public string Department { get; set; }
 
-        public Student StudentPersonalDetails { get; set; }
+        public SchoolApplication.Student StudentPersonalDetails { get; set; }
+
+        [DataType(DataType.Upload)]
+        [Required]
+        public HttpPostedFileBase ImageUpload { get; set; }
+
         #endregion
 
         #region Public Functions

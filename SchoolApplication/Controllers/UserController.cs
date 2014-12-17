@@ -24,6 +24,11 @@ namespace SchoolApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// http://stackoverflow.com/questions/1822548/mvc-how-to-store-assign-roles-of-authenticated-users
+        /// </summary>
+        /// <param name="objUserLogin"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult LogIn(Models.UserLoginModel objUserLogin)
         {
@@ -31,8 +36,16 @@ namespace SchoolApplication.Controllers
             {
                 if (IsValid(objUserLogin.UserName, objUserLogin.Password))
                 {
+                    var objRole = new UtilityClass.MyRoleProvider();
                     FormsAuthentication.SetAuthCookie(objUserLogin.UserName, false);
-                    return RedirectToAction("Home", "StudentProfile");
+                    var roles = objRole.GetRolesForUser(objUserLogin.UserName);
+
+                    if (roles.Contains("Student"))
+                        return RedirectToAction("Home", "StudentProfile", new { area = "Student" });
+                    if (roles.Contains("Teacher"))
+                        return RedirectToAction("Home", "TeacherProfile", new { area = "Teacher" });
+                    if (roles.Contains("Admin"))
+                        return RedirectToAction("Home", "AdminProfile", new { area = "Admin" });
                 }
                 else
                 {
@@ -46,7 +59,7 @@ namespace SchoolApplication.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("LogIn", "User");
+            return RedirectToAction("LogIn", "User", new { area = "" });
         }
 
         [HttpGet]
@@ -87,7 +100,7 @@ namespace SchoolApplication.Controllers
                                     user.UserName = objRegistration.UserName;
                                     user.Password = cryptPassword;
                                     user.PasswordSalt = crypt.Salt;
-                                    user.Role = "Student";
+                                    user.Role = UtilityClass.RolesList.STUDENT.Value;
                                     user.IsActive = true;
                                     user.UserId = student.StudentId;
 
@@ -218,6 +231,7 @@ namespace SchoolApplication.Controllers
                     if (user.Password == crypto.Compute(password, user.PasswordSalt))
                     {
                         isValid = true;
+                        //Session["Role"] = user.Role;
                     }
                 }
             }
@@ -237,6 +251,46 @@ namespace SchoolApplication.Controllers
 
             return sb;
 
+        }
+
+        [HttpGet]
+        public ActionResult CreateAdmin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateAdmin(Models.UserLoginModel objModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var crypt = new SimpleCrypto.PBKDF2();
+                string password = crypt.Compute(objModel.Password);
+                using (var ctx = new SchoolDBContext())
+                {
+                    var userName = ctx.Logins.FirstOrDefault(x => x.UserName == objModel.UserName);
+                    if (userName == null)
+                    {
+                        var user = ctx.Logins.Create();
+                        user.UserName = objModel.UserName;
+                        user.Password = password;
+                        user.PasswordSalt = crypt.Salt;
+                        user.Role = UtilityClass.RolesList.ADMIN.Value;
+                        user.UserId = null;
+                        user.IsActive = true;
+
+                        ctx.Logins.Add(user);
+                        ctx.SaveChanges();
+                        ViewBag.message = "Administator login created successfully";
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Username already exists");
+                    }
+                }
+            }
+
+            return View(objModel);
         }
     }
 }

@@ -1,0 +1,21 @@
+﻿@model SchoolApplication.Areas.Admin.Models.DepartmentModel
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Add New Department</legend>
+        <div>@Html.LabelFor(x => x.DepartmentName)</div>
+        <div>@Html.TextBoxFor(x => x.DepartmentName)
+            @Html.ValidationMessageFor(x => x.DepartmentName)
+        </div>
+        <div>Is Active @Html.CheckBoxFor(x => x.IsActive, true)</div>
+
+        <input type="submit" value="Save" />
+
+    </fieldset>
+}

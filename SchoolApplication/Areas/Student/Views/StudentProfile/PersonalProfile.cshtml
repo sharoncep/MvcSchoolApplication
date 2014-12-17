@@ -1,4 +1,5 @@
-﻿@model SchoolApplication.Models.StudentProfileModel
+﻿@model SchoolApplication.Areas.Student.Models.StudentProfileModel
+@using SchoolApplication.UtilityClass
 
 @{
     ViewBag.Title = "PersonalProfile";
@@ -6,9 +7,12 @@
 }
 @Html.Partial("_StudentHome")
 
-<img src="https://lh5.googleusercontent.com/-ZadaXoUTBfs/AAAAAAAAAAI/AAAAAAAAAAA/3rh5IMTHOzg/photo.jpg" alt="" width="151" height="151">
-@Html.ActionLink("Change Photo","ChangePhoto")
+@*<img src='@Url.Content(Model.StudentPersonalDetails.PhotoPath)' alt="" width="151" height="151">*@
 
+@Html.Image("previewImage", Model.StudentPersonalDetails.PhotoPath, new { width = 151, height = 151 })
+<div>
+    @Html.ActionLink("Change Photo", "ChangePhoto")
+</div>
 <h2>PersonalProfile</h2>
 <table>
     <tr>

@@ -127,5 +127,4 @@ namespace SchoolApplication.Models
         #endregion
     }
 
-
 }

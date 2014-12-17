@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_StudentHome")
+
+<h2>Home</h2>
+
+<div id="accordion">
+    <h3>Time Table</h3>
+    <div>
+        @*@Html.Partial("_PersonalProfile", new SchoolApplication.Models.StudentProfileModel())*@
+    </div>
+
+    <h3>Exam Notification</h3>
+    <div>
+        @*@Html.Partial("AcademicProfile")*@
+    </div>
+
+    <h3>Subjects</h3>
+    <div>
+        @*@Html.Partial("AcademicProfile")*@
+    </div>
+
+
+</div>

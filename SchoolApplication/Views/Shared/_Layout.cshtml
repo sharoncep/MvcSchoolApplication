@@ -6,15 +6,17 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @* http://stackoverflow.com/questions/12197323/how-to-to-include-javascript-into-the-page-header-mvc4 *@
+    @RenderSection("JavaScript", required: false)
+    @RenderSection("CSS", required: false)
 </head>
 <body>
     @if (Request.IsAuthenticated)
     {
         <strong>@Html.Encode("Welcome " + User.Identity.Name)</strong>
-        @Html.ActionLink("Logout", "LogOut", "User")
-        <strong>@Html.Encode(" | ")</strong>
-        @Html.ActionLink("Change Password", "ChangePassword", "StudentProfile")
-        
+        @Html.RouteLink("Logout", new { action = "LogOut", controller = "User", area = "" })
+@*@Html.ActionLink("Logout", "LogOut", "User")*@
     }
     else
     {

@@ -1,0 +1,7 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div>@Html.ActionLink("Deparment", "Listing", "Department")</div>
+    <div>@Html.ActionLink("Subject", "Listing", "Subject")</div>
+    <div>@Html.ActionLink("Teacher", "Listing", "Teacher")</div>
+    <div>@Html.ActionLink("Time Table", "Listing", "TimeTable")</div>
+}

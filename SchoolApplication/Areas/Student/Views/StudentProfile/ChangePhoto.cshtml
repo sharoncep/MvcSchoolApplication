@@ -1,0 +1,20 @@
+﻿@model SchoolApplication.Areas.Student.Models.StudentProfileModel
+
+@{
+    ViewBag.Title = "ChangePhoto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ChangePhoto</h2>
+@using (@Html.BeginForm("ChangePhoto", "StudentProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset>
+        <legend>Change Profile Photo</legend>
+        <div>
+            <label for="file">Upload Image:</label>
+            @Html.TextBoxFor(m => m.ImageUpload, new { type = "file" })
+            @Html.ValidationMessageFor(m => m.ImageUpload)
+        </div>
+        <input type="submit" value="Upload" />
+    </fieldset>
+}

@@ -1,0 +1,7 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div>@Html.ActionLink("Personal Profile", "PersonalProfile", "StudentProfile")</div>
+    <div>@Html.ActionLink("Academic Profile", "AcademicProfile", "StudentProfile")</div>
+    <div>@Html.RouteLink("Change Password", new { action = "ChangePassword", controller = "StudentProfile" })</div>
+    
+}
