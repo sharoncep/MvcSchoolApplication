@@ -133,6 +133,8 @@
     <Compile Include="Areas\Admin\Controllers\TeacherController.cs" />
     <Compile Include="Areas\Admin\Controllers\TimeTableController.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentModel.cs" />
+    <Compile Include="Areas\Admin\Models\SubjectModel.cs" />
+    <Compile Include="Areas\Admin\Models\TeacherModel.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\Controllers\StudentController.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />

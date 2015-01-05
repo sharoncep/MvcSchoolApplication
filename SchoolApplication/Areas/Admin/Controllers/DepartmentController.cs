@@ -28,7 +28,23 @@ namespace SchoolApplication.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                objModel.SaveDepartment(objModel);
+                using (var ctx = new SchoolDBContext())
+                {
+                    var departmentName =
+                        ctx.Departments.FirstOrDefault(x => x.DepartmentName == objModel.DepartmentName);
+                    if (departmentName == null)
+                    {
+                        var department = ctx.Departments.Create();
+                        department.DepartmentName = objModel.DepartmentName;
+                        department.IsActive = objModel.IsActive;
+
+                        ctx.Departments.Add(department);
+                        ctx.SaveChanges();
+                        ViewBag.message = "Department " + objModel.DepartmentName + " added successfully";
+                    }
+                    else
+                        ModelState.AddModelError("", "Department name already exist");
+                }
             }
             return View(objModel);
         }

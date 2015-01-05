@@ -1,6 +1,23 @@
-﻿@{
+﻿@model SchoolApplication.Areas.Admin.Models.SubjectModel
+@{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>Add new Subject</legend>
+        <div>Department</div>
+        <div>@Html.DropDownListFor(x => x.DepartmentId, Model.GetDepartment())</div>
+        <div>Subject Name</div>
+        <div>@Html.TextBoxFor(x => x.SubjectName)
+            @Html.ValidationMessageFor(x => x.SubjectName)
+        </div>
+        <div>Is Active</div>
+        <div>@Html.CheckBoxFor(x => x.IsActive)</div>
+        <input type="submit" value="Save" />
+        <span style="color: green">@ViewBag.message</span>
+    </fieldset>
+}

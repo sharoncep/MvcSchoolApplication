@@ -57,6 +57,5 @@ D:\Sharon\Demos\MvcSchoolApplication\SchoolApplication\bin\System.Web.Razor.xml
 D:\Sharon\Demos\MvcSchoolApplication\SchoolApplication\bin\System.Web.WebPages.xml
 D:\Sharon\Demos\MvcSchoolApplication\SchoolApplication\bin\System.Web.WebPages.Deployment.xml
 D:\Sharon\Demos\MvcSchoolApplication\SchoolApplication\bin\System.Web.WebPages.Razor.xml
-D:\Sharon\Demos\MvcSchoolApplication\SchoolApplication\obj\Debug\SchoolApplication.csprojResolveAssemblyReference.cache
 D:\Sharon\Demos\MvcSchoolApplication\SchoolApplication\obj\Debug\SchoolApplication.dll
 D:\Sharon\Demos\MvcSchoolApplication\SchoolApplication\obj\Debug\SchoolApplication.pdb
