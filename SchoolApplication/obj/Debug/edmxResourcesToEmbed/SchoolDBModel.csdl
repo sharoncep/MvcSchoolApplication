@@ -22,6 +22,7 @@
       <End Role="Subject" EntitySet="Subjects" />
       <End Role="Teacher" EntitySet="Teachers" />
     </AssociationSet>
+    <EntitySet Name="TimeTables" EntityType="SchoolDBModel.TimeTable" />
   </EntityContainer>
   <EntityType Name="Department">
     <Key>
@@ -87,6 +88,10 @@
     <NavigationProperty Name="Department" Relationship="SchoolDBModel.FK__Teacher__Departm__2B3F6F97" FromRole="Teacher" ToRole="Department" />
     <NavigationProperty Name="Subject" Relationship="SchoolDBModel.FK__Teacher__Subject__2C3393D0" FromRole="Teacher" ToRole="Subject" />
     <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="EmployeeId" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DOJ" Precision="3" />
+    <Property Type="String" Name="PhotoPath" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DOB" Precision="3" />
   </EntityType>
   <Association Name="FK__Student__Departm__2A4B4B5E">
     <End Role="Department" Type="SchoolDBModel.Department" Multiplicity="1" />
@@ -136,4 +141,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="TimeTable">
+    <Key>
+      <PropertyRef Name="TimeTableId" />
+      <PropertyRef Name="DayOfWeek" />
+      <PropertyRef Name="TimeFrom" />
+      <PropertyRef Name="TimeTo" />
+      <PropertyRef Name="SubjectOrder" />
+    </Key>
+    <Property Type="Int32" Name="TimeTableId" Nullable="false" />
+    <Property Type="String" Name="DayOfWeek" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="SubjectId" />
+    <Property Type="Int32" Name="TeacherId" />
+    <Property Type="Int32" Name="DepartmentId" />
+    <Property Type="Time" Name="TimeFrom" Nullable="false" Precision="7" />
+    <Property Type="Time" Name="TimeTo" Nullable="false" Precision="7" />
+    <Property Type="Int32" Name="SubjectOrder" Nullable="false" />
+  </EntityType>
 </Schema>

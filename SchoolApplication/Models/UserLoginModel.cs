@@ -60,17 +60,8 @@ namespace SchoolApplication.Models
 
         public IEnumerable<SelectListItem> GetDepartments()
         {
-
-            using (var ctx = new SchoolDBContext())
-            {
-                //DepartmentList = 
-                return ctx.Departments.ToList().Select(x =>
-                    new SelectListItem
-                    {
-                        Value = x.DepartmentId.ToString(),
-                        Text = x.DepartmentName
-                    });
-            }
+            var objCommon = new CommonModel();
+            return objCommon.GetDepartments();
         }
         #endregion
     }
@@ -112,17 +103,8 @@ namespace SchoolApplication.Models
 
         public IEnumerable<SelectListItem> GetDepartments()
         {
-
-            using (var ctx = new SchoolDBContext())
-            {
-                //DepartmentList = 
-                return ctx.Departments.ToList().Select(x =>
-                    new SelectListItem
-                    {
-                        Value = x.DepartmentId.ToString(),
-                        Text = x.DepartmentName
-                    });
-            }
+            var objCommon = new CommonModel();
+            return objCommon.GetDepartments();
         }
         #endregion
     }

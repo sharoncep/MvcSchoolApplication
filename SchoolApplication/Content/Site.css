@@ -12,16 +12,28 @@ header, footer, nav, section {
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
+
 fieldset {
-    border: 1px solid #ddd;
-    padding: 0 1.4em 1.4em 1.4em;
-    margin: 0 0 1.5em 0;
+    font-family: Etihad_Altis_Book;
+    border: 2px solid #1A93C6;
+    background: #FFF;
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 15px;
+    width: 30%;
+    margin: auto;
 }
 
-legend {
-    font-size: 1.2em;
-    font-weight: bold;
-}
+    fieldset legend {
+        /*background: #1F497D;*/
+        color: #1F497D;
+        padding: 5px 10px;
+        font-size: 20px;
+        /*border-radius: 5px;
+        box-shadow: 0 0 0 3px #ddd;*/
+        margin-left: 20px;
+        text-align: center;
+    }
 
 textarea {
     min-height: 75px;

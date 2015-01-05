@@ -21,6 +21,11 @@ namespace SchoolApplication.Controllers
         [HttpGet]
         public ActionResult LogIn()
         {
+            if (Request.IsAuthenticated)
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("LogIn", "User", new { area = "" });
+            }
             return View();
         }
 

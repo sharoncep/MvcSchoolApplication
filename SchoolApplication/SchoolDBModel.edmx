@@ -11,6 +11,18 @@
           <EntitySet Name="Student" EntityType="SchoolDBModel.Store.Student" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Subject" EntityType="SchoolDBModel.Store.Subject" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Teacher" EntityType="SchoolDBModel.Store.Teacher" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TimeTable" EntityType="SchoolDBModel.Store.TimeTable" store:Type="Tables" store:Schema="dbo" store:Name="TimeTable">
+            <DefiningQuery>SELECT 
+      [TimeTable].[TimeTableId] AS [TimeTableId], 
+      [TimeTable].[DayOfWeek] AS [DayOfWeek], 
+      [TimeTable].[SubjectId] AS [SubjectId], 
+      [TimeTable].[TeacherId] AS [TeacherId], 
+      [TimeTable].[DepartmentId] AS [DepartmentId], 
+      [TimeTable].[TimeFrom] AS [TimeFrom], 
+      [TimeTable].[TimeTo] AS [TimeTo], 
+      [TimeTable].[SubjectOrder] AS [SubjectOrder]
+      FROM [dbo].[TimeTable] AS [TimeTable]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__Student__Departm__2A4B4B5E" Association="SchoolDBModel.Store.FK__Student__Departm__2A4B4B5E">
             <End Role="Department" EntitySet="Department" />
             <End Role="Student" EntitySet="Student" />
@@ -78,12 +90,36 @@
             <PropertyRef Name="TeacherId" />
           </Key>
           <Property Name="TeacherId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="DepartmentId" Type="int" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" Nullable="false" MaxLength="20" />
           <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="DOJ" Type="datetime" />
+          <Property Name="DOB" Type="datetime" />
           <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="PhotoPath" Type="nvarchar(max)" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'SchoolDB.dbo.TimeTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TimeTable">
+          <Key>
+            <PropertyRef Name="TimeTableId" />
+            <PropertyRef Name="DayOfWeek" />
+            <PropertyRef Name="TimeFrom" />
+            <PropertyRef Name="TimeTo" />
+            <PropertyRef Name="SubjectOrder" />
+          </Key>
+          <Property Name="TimeTableId" Type="int" Nullable="false" />
+          <Property Name="DayOfWeek" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SubjectId" Type="int" />
+          <Property Name="TeacherId" Type="int" />
+          <Property Name="DepartmentId" Type="int" />
+          <Property Name="TimeFrom" Type="time" Nullable="false" />
+          <Property Name="TimeTo" Type="time" Nullable="false" />
+          <Property Name="SubjectOrder" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__Student__Departm__2A4B4B5E">
           <End Role="Department" Type="SchoolDBModel.Store.Department" Multiplicity="1" />
@@ -159,6 +195,7 @@
             <End Role="Subject" EntitySet="Subjects" />
             <End Role="Teacher" EntitySet="Teachers" />
           </AssociationSet>
+          <EntitySet Name="TimeTables" EntityType="SchoolDBModel.TimeTable" />
         </EntityContainer>
         <EntityType Name="Department">
           <Key>
@@ -224,6 +261,10 @@
           <NavigationProperty Name="Department" Relationship="SchoolDBModel.FK__Teacher__Departm__2B3F6F97" FromRole="Teacher" ToRole="Department" />
           <NavigationProperty Name="Subject" Relationship="SchoolDBModel.FK__Teacher__Subject__2C3393D0" FromRole="Teacher" ToRole="Subject" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmployeeId" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DOJ" Precision="3" />
+          <Property Type="String" Name="PhotoPath" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DOB" Precision="3" />
         </EntityType>
         <Association Name="FK__Student__Departm__2A4B4B5E">
           <End Role="Department" Type="SchoolDBModel.Department" Multiplicity="1" />
@@ -273,6 +314,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TimeTable">
+          <Key>
+            <PropertyRef Name="TimeTableId" />
+            <PropertyRef Name="DayOfWeek" />
+            <PropertyRef Name="TimeFrom" />
+            <PropertyRef Name="TimeTo" />
+            <PropertyRef Name="SubjectOrder" />
+          </Key>
+          <Property Type="Int32" Name="TimeTableId" Nullable="false" />
+          <Property Type="String" Name="DayOfWeek" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SubjectId" />
+          <Property Type="Int32" Name="TeacherId" />
+          <Property Type="Int32" Name="DepartmentId" />
+          <Property Type="Time" Name="TimeFrom" Nullable="false" Precision="7" />
+          <Property Type="Time" Name="TimeTo" Nullable="false" Precision="7" />
+          <Property Type="Int32" Name="SubjectOrder" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -331,6 +389,10 @@
           <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="SchoolDBModel.Teacher">
               <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -338,6 +400,20 @@
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeTables">
+            <EntityTypeMapping TypeName="SchoolDBModel.TimeTable">
+              <MappingFragment StoreEntitySet="TimeTable">
+                <ScalarProperty Name="SubjectOrder" ColumnName="SubjectOrder" />
+                <ScalarProperty Name="TimeTo" ColumnName="TimeTo" />
+                <ScalarProperty Name="TimeFrom" ColumnName="TimeFrom" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+                <ScalarProperty Name="TimeTableId" ColumnName="TimeTableId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

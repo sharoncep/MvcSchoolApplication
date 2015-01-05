@@ -6,6 +6,18 @@
     <EntitySet Name="Student" EntityType="SchoolDBModel.Store.Student" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Subject" EntityType="SchoolDBModel.Store.Subject" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Teacher" EntityType="SchoolDBModel.Store.Teacher" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TimeTable" EntityType="SchoolDBModel.Store.TimeTable" store:Type="Tables" store:Schema="dbo" store:Name="TimeTable">
+      <DefiningQuery>SELECT 
+      [TimeTable].[TimeTableId] AS [TimeTableId], 
+      [TimeTable].[DayOfWeek] AS [DayOfWeek], 
+      [TimeTable].[SubjectId] AS [SubjectId], 
+      [TimeTable].[TeacherId] AS [TeacherId], 
+      [TimeTable].[DepartmentId] AS [DepartmentId], 
+      [TimeTable].[TimeFrom] AS [TimeFrom], 
+      [TimeTable].[TimeTo] AS [TimeTo], 
+      [TimeTable].[SubjectOrder] AS [SubjectOrder]
+      FROM [dbo].[TimeTable] AS [TimeTable]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK__Student__Departm__2A4B4B5E" Association="SchoolDBModel.Store.FK__Student__Departm__2A4B4B5E">
       <End Role="Department" EntitySet="Department" />
       <End Role="Student" EntitySet="Student" />
@@ -73,12 +85,36 @@
       <PropertyRef Name="TeacherId" />
     </Key>
     <Property Name="TeacherId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeId" Type="nvarchar" MaxLength="50" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="DepartmentId" Type="int" Nullable="false" />
     <Property Name="Gender" Type="nvarchar" Nullable="false" MaxLength="20" />
     <Property Name="SubjectId" Type="int" Nullable="false" />
+    <Property Name="DOJ" Type="datetime" />
+    <Property Name="DOB" Type="datetime" />
     <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PhotoPath" Type="nvarchar(max)" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'SchoolDB.dbo.TimeTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="TimeTable">
+    <Key>
+      <PropertyRef Name="TimeTableId" />
+      <PropertyRef Name="DayOfWeek" />
+      <PropertyRef Name="TimeFrom" />
+      <PropertyRef Name="TimeTo" />
+      <PropertyRef Name="SubjectOrder" />
+    </Key>
+    <Property Name="TimeTableId" Type="int" Nullable="false" />
+    <Property Name="DayOfWeek" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="SubjectId" Type="int" />
+    <Property Name="TeacherId" Type="int" />
+    <Property Name="DepartmentId" Type="int" />
+    <Property Name="TimeFrom" Type="time" Nullable="false" />
+    <Property Name="TimeTo" Type="time" Nullable="false" />
+    <Property Name="SubjectOrder" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK__Student__Departm__2A4B4B5E">
     <End Role="Department" Type="SchoolDBModel.Store.Department" Multiplicity="1" />

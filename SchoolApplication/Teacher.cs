@@ -21,6 +21,10 @@ namespace SchoolApplication
         public int SubjectId { get; set; }
         public bool IsActive { get; set; }
         public string Email { get; set; }
+        public string EmployeeId { get; set; }
+        public Nullable<System.DateTime> DOJ { get; set; }
+        public string PhotoPath { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
     
         public virtual Department Department { get; set; }
         public virtual Subject Subject { get; set; }

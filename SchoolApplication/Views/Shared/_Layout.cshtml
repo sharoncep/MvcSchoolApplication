@@ -4,14 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
+    @*@Styles.Render("~/Content/css")*@
+    @Styles.Render("~/Content/bootstrapcss")
+
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
     @* http://stackoverflow.com/questions/12197323/how-to-to-include-javascript-into-the-page-header-mvc4 *@
+
     @RenderSection("JavaScript", required: false)
     @RenderSection("CSS", required: false)
 </head>
 <body>
+
     @if (Request.IsAuthenticated)
     {
         <strong>@Html.Encode("Welcome " + User.Identity.Name)</strong>
@@ -28,7 +35,6 @@
 
     @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+
 </body>
 </html>

@@ -1,6 +1,50 @@
-﻿@{
+﻿@model SchoolApplication.Areas.Admin.Models.TeacherModel
+@{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>Add New Teacher</legend>
+        <div>Employee Id</div>
+        <div>@Html.TextBoxFor(x => x.EmployeeId)
+            @Html.ValidationMessageFor(x => x.EmployeeId)
+        </div>
+        <div>Name</div>
+        <div>@Html.TextBoxFor(x => x.Name)
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+        <div>Gender</div>
+        <div>@Html.DropDownListFor(u => u.Gender, Model.GetGender())
+            @Html.ValidationMessageFor(x => x.Gender)
+        </div>
+        <div>Date of Birth</div>
+        <div>@Html.TextBoxFor(x => x.DOB, new { placeholder = "Select DOB", @type = "date" })
+            @Html.ValidationMessageFor(x => x.DOB)
+        </div>
+        <div>Department</div>
+        <div>@Html.DropDownListFor(u => u.DepartmentId, Model.GetDepartments())
+            @Html.ValidationMessageFor(x => x.DepartmentId)
+        </div>
+        <div>Subject</div>
+        <div>@Html.DropDownListFor(u => u.SubjectId, Model.GetSubjects())
+            @Html.ValidationMessageFor(x => x.SubjectId)
+        </div>
+        <div>Date of Joining</div>
+        <div>@Html.TextBoxFor(x => x.DOJ, new { placeholder = "Select DOJ", @type = "date" })
+            @Html.ValidationMessageFor(x => x.DOJ)
+        </div>
+        <div>Email</div>
+        <div>@Html.TextBoxFor(x => x.Email)
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+
+        <div>Is Active @Html.CheckBoxFor(x => x.IsActive, true)</div>
+
+        <input type="submit" value="Save" />
+        <span style="color: green">@ViewBag.message</span>
+    </fieldset>
+}

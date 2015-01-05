@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\Models\TeacherModel.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\Controllers\StudentController.cs" />
+    <Compile Include="Areas\Teacher\Models\StudentModel.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminProfileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -153,6 +154,7 @@
       <DependentUpon>SchoolDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Student\Models\StudentProfileModel.cs" />
+    <Compile Include="Models\CommonModel.cs" />
     <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchoolDBModel.Context.cs">
@@ -179,6 +181,9 @@
     <Compile Include="Teacher.cs">
       <DependentUpon>SchoolDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TimeTable.cs">
+      <DependentUpon>SchoolDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UtilityClass\MyHtmlHelpers.cs" />
     <Compile Include="UtilityClass\ImageTools.cs" />
     <Compile Include="UtilityClass\Messenger.cs" />
@@ -186,6 +191,12 @@
     <Compile Include="UtilityClass\RandomPassword.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -240,6 +251,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <EntityDeploy Include="SchoolDBModel.edmx">
@@ -277,12 +289,20 @@
     <Content Include="Areas\Teacher\Views\Student\Listing.cshtml" />
     <Content Include="Areas\Teacher\Views\Student\Add.cshtml" />
     <Content Include="Areas\Teacher\Views\Student\Edit.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\MvcSchoolApp.pubxml" />
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CustomJs\Registration.js" />
     <Content Include="Scripts\CustomJs\StudentProfile.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
@@ -295,6 +315,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -327,7 +348,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Teacher\Models\" />
     <Folder Include="ProfilePhotos\Students\" />
   </ItemGroup>
   <ItemGroup>

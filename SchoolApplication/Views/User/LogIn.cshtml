@@ -9,14 +9,14 @@
 {
     @Html.ValidationSummary(true, "Username or password incorrect");
     <div>
-        <fieldset>
+        <fieldset class="control-grouperror">
             <legend>Log In</legend>
             <div>@Html.LabelFor(u => u.UserName)</div>
-            <div>@Html.TextBoxFor(u => u.UserName)
+            <div>@Html.TextBoxFor(u => u.UserName, new { @class = "span3" })
                 @Html.ValidationMessageFor(u => u.UserName)
             </div>
             <div>@Html.LabelFor(u => u.Password)</div>
-            <div>@Html.PasswordFor(u => u.Password)
+            <div>@Html.PasswordFor(u => u.Password, new { @class = "span3" })
                 @Html.ValidationMessageFor(u => u.Password)
             </div>
             <input type="submit" value="Log In" />

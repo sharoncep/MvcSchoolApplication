@@ -14,6 +14,7 @@
         <AssociationConnector Association="SchoolDBModel.FK__Subject__Departm__2D27B809" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDBModel.FK__Teacher__Departm__2B3F6F97" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDBModel.FK__Teacher__Subject__2C3393D0" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SchoolDBModel.TimeTable" Width="1.5" PointX="7.7501510306029351" PointY="0.40648369510028681" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
