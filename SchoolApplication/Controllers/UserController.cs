@@ -54,7 +54,7 @@ namespace SchoolApplication.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Login details are incorrect");
+                    ModelState.AddModelError("", "Invalid Username or Password");
                 }
             }
             return View(objUserLogin);

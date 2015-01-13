@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace SchoolApplication.Areas.Admin.Controllers
 {
+    [Authorize(Roles="Admin")]
     public class TeacherController : Controller
     {
         //

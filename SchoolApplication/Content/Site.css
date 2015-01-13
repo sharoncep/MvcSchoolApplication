@@ -1,14 +1,21 @@
 ﻿body {
-    font-size: .85em;
+    /*font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
-    background-color: #fff;
+    background-color: #fff;*/
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
 }
 
 header, footer, nav, section {
     display: block;
 }
 
+ h1, h2, h3, h4, h5, h6
+{
+  color: #0CA0C6;
+}
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
@@ -71,3 +78,49 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
+
+
+/* Styles for Login
+-----------------------------------------------------------*/
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 10px;
+    }
+
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+

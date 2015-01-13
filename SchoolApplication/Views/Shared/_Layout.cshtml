@@ -4,12 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @*@Styles.Render("~/Content/css")*@
-    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Content/bootstrap-responsive.min.css")
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+
     @RenderSection("scripts", required: false)
 
     @* http://stackoverflow.com/questions/12197323/how-to-to-include-javascript-into-the-page-header-mvc4 *@
@@ -18,23 +21,6 @@
     @RenderSection("CSS", required: false)
 </head>
 <body>
-
-    @if (Request.IsAuthenticated)
-    {
-        <strong>@Html.Encode("Welcome " + User.Identity.Name)</strong>
-        @Html.RouteLink("Logout", new { action = "LogOut", controller = "User", area = "" })
-@*@Html.ActionLink("Logout", "LogOut", "User")*@
-    }
-    else
-    {
-        @Html.ActionLink("Login", "LogIn", "User")
-        @Html.ActionLink(" | Register", "Registration", "User")
-        @Html.ActionLink(" | Forgot Password", "ForgotPassword", "User")
-
-    }
-
     @RenderBody()
-
-
 </body>
 </html>

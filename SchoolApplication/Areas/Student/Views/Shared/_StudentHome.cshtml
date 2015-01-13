@@ -1,7 +1,27 @@
 ﻿@if (Request.IsAuthenticated)
 {
-    <div>@Html.ActionLink("Personal Profile", "PersonalProfile", "StudentProfile")</div>
-    <div>@Html.ActionLink("Academic Profile", "AcademicProfile", "StudentProfile")</div>
-    <div>@Html.RouteLink("Change Password", new { action = "ChangePassword", controller = "StudentProfile" })</div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Student</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Personal Profile", "PersonalProfile", "StudentProfile")</li>
+                    <li>@Html.ActionLink("Academic Profile", "AcademicProfile", "StudentProfile")</li>
+                    <li>@Html.RouteLink("Change Password", new { action = "ChangePassword", controller = "StudentProfile" })</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @*<li><span class="glyphicon glyphicon-user">@Html.Encode("Welcome " + User.Identity.Name)</span></li>*@
+                    <li><span class="glyphicon glyphicon-user">@Html.Encode(User.Identity.Name)</span> @Html.RouteLink("Logout", new { action = "LogOut", controller = "User", area = "" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     
 }

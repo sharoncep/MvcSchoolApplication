@@ -1,7 +1,29 @@
-﻿@if (Request.IsAuthenticated)
+﻿@*http://www.w3schools.com/bootstrap/bootstrap_case_navigation.asp*@
+
+@if (Request.IsAuthenticated)
 {
-    <div>@Html.ActionLink("Deparment", "Listing", "Department")</div>
-    <div>@Html.ActionLink("Subject", "Listing", "Subject")</div>
-    <div>@Html.ActionLink("Teacher", "Listing", "Teacher")</div>
-    <div>@Html.ActionLink("Time Table", "Listing", "TimeTable")</div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Adminstrator</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Deparment", "Listing", "Department")</li>
+                    <li>@Html.ActionLink("Subject", "Listing", "Subject")</li>
+                    <li>@Html.ActionLink("Teacher", "Listing", "Teacher")</li>
+                    <li>@Html.ActionLink("Time Table", "Listing", "TimeTable")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><span class="glyphicon glyphicon-user"></span>@Html.Encode("Welcome " + User.Identity.Name)</li>
+                    <li>@Html.RouteLink("Logout", new { action = "LogOut", controller = "User", area = "" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 }

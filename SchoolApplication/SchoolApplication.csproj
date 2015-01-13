@@ -251,6 +251,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="fonts\ecoicons.dev.svg" />
+    <Content Include="fonts\ecoicons.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -294,9 +296,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="fonts\ecoicons.eot" />
+    <Content Include="fonts\ecoicons.ttf" />
+    <Content Include="fonts\ecoicons.woff" />
     <None Include="Properties\PublishProfiles\MvcSchoolApp.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CustomJs\Administrator.js" />
     <Content Include="Scripts\CustomJs\Registration.js" />
     <Content Include="Scripts\CustomJs\StudentProfile.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -317,7 +323,9 @@
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

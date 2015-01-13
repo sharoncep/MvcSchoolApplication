@@ -4,11 +4,12 @@
     ViewBag.Title = "LogIn";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
 
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary(true, "Username or password incorrect");
-    <div>
+    @using (Html.BeginForm())
+    {
+        
+@*<div>
         <fieldset class="control-grouperror">
             <legend>Log In</legend>
             <div>@Html.LabelFor(u => u.UserName)</div>
@@ -23,5 +24,27 @@
             <div>@Html.ActionLink("Register", "Registration", "User") for new account</div>
             <div>@Html.ActionLink("Forgot Password", "ForgotPassword", "User") if you forgot your username or password</div>
         </fieldset>
-    </div>
-}
+    </div>*@
+    
+
+        <div class="form-signin">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="UserName" class="sr-only">Username</label>
+
+            @*<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">*@
+            @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", @placeholder = "Username" })
+            @Html.ValidationMessageFor(u => u.UserName)
+
+            <label for="Password" class="sr-only">Password</label>
+
+            @*<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">*@
+            @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
+            @Html.ValidationMessageFor(u => u.Password)
+
+            @Html.ValidationSummary(true)
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </div>
+    
+    }
+</div>
