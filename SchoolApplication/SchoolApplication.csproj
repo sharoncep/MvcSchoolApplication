@@ -197,6 +197,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -299,10 +300,13 @@
     <Content Include="fonts\ecoicons.eot" />
     <Content Include="fonts\ecoicons.ttf" />
     <Content Include="fonts\ecoicons.woff" />
+    <Content Include="Areas\Student\Views\Shared\_Notification.cshtml" />
+    <Content Include="Areas\Teacher\Views\Shared\_Notification.cshtml" />
     <None Include="Properties\PublishProfiles\MvcSchoolApp.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CustomJs\Administrator.js" />
+    <Content Include="Scripts\CustomJs\LoadingDiv.js" />
     <Content Include="Scripts\CustomJs\Registration.js" />
     <Content Include="Scripts\CustomJs\StudentProfile.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -312,6 +316,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />

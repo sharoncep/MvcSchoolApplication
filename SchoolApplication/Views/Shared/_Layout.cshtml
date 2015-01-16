@@ -12,7 +12,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/bootstrap.min.js")
-
+    @Scripts.Render("~/Scripts/CustomJs/LoadingDiv.js")
     @RenderSection("scripts", required: false)
 
     @* http://stackoverflow.com/questions/12197323/how-to-to-include-javascript-into-the-page-header-mvc4 *@
@@ -21,6 +21,113 @@
     @RenderSection("CSS", required: false)
 </head>
 <body>
-    @RenderBody()
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+        <header class="top" role="header">
+            <!-- Fixed navbar -->
+            @if (Request.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin"))
+                {
+                @Html.Partial("~/Areas/Admin/Views/Shared/_AdminHome.cshtml")}
+
+                if (User.IsInRole("Student"))
+                {
+                @Html.Partial("~/Areas/Student/Views/Shared/_StudentHome.cshtml")}
+
+                if (User.IsInRole("Teacher"))
+                {
+                @Html.Partial("~/Areas/Teacher/Views/Shared/_TeacherHome.cshtml")}
+            }
+        </header>
+        <!-- Begin page content -->
+        <div class="center-container">
+            <div class="center-row">
+                <div class="col-xs-6">@RenderBody()</div>
+            </div>
+
+            <div class="col-md-3">
+                @if (Request.IsAuthenticated)
+                {
+                    if (User.IsInRole("Student"))
+                    {
+                    @Html.Partial("~/Areas/Student/Views/Shared/_Notification.cshtml")}
+
+                    if (User.IsInRole("Teacher"))
+                    {
+                    @Html.Partial("~/Areas/Teacher/Views/Shared/_Notification.cshtml")}
+                }
+            </div>
+            @*<div class="center-row">
+
+                    @RenderBody()
+
+                </div>*@
+
+
+
+        </div>
+
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <p class="lead" style="text-align: center;"><span class="glyphicon glyphicon-copyright-mark"></span>@DateTime.Now.Year</p>
+        </div>
+    </div>
+
+    @*<header class="top" role="header">
+        @if (Request.IsAuthenticated)
+        {
+            if (User.IsInRole("Admin"))
+            {
+            @Html.Partial("~/Areas/Admin/Views/Shared/_AdminHome.cshtml")}
+
+            if (User.IsInRole("Student"))
+            {
+            @Html.Partial("~/Areas/Student/Views/Shared/_StudentHome.cshtml")}
+
+            if (User.IsInRole("Teacher"))
+            {
+            @Html.Partial("~/Areas/Teacher/Views/Shared/_TeacherHome.cshtml")}
+        }
+    </header>
+    <div class="banner">
+        <div class="container">
+        </div>
+    </div>
+    <div class="middle">
+        <div class="container">
+            <div class="col-md-9 content">
+                @RenderBody()
+            </div>
+            <div class="col-md-3">
+                @if (Request.IsAuthenticated)
+                {
+                    if (User.IsInRole("Student"))
+                    {
+                    @Html.Partial("~/Areas/Student/Views/Shared/_Notification.cshtml")}
+
+                    if (User.IsInRole("Teacher"))
+                    {
+                    @Html.Partial("~/Areas/Teacher/Views/Shared/_Notification.cshtml")}
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom" id="footer">
+        <div class="container">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <h5>Copyrights @DateTime.Now.Year</h5>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>*@
+
+
 </body>
 </html>

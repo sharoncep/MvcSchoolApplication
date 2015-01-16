@@ -4,7 +4,7 @@
     ViewBag.Title = "ChangePhoto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@Html.Partial("_StudentHome")
 <h2>ChangePhoto</h2>
 @using (@Html.BeginForm("ChangePhoto", "StudentProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {

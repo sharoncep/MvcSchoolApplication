@@ -62,7 +62,12 @@ namespace SchoolApplication.Controllers
 
         public ActionResult LogOut()
         {
+            Session.Clear(); //this will clear session
+            Session.Abandon(); //this will Abandon session
             FormsAuthentication.SignOut();
+            Response.Cache.SetExpires(DateTime.Now);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
 
             return RedirectToAction("LogIn", "User", new { area = "" });
         }

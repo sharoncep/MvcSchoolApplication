@@ -27,23 +27,74 @@
     </div>*@
     
 
-        <div class="form-signin">
+@*<div class="form-signin">
             <h2 class="form-signin-heading">Please sign in</h2>
             <label for="UserName" class="sr-only">Username</label>
 
-            @*<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">*@
             @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", @placeholder = "Username" })
             @Html.ValidationMessageFor(u => u.UserName)
 
             <label for="Password" class="sr-only">Password</label>
 
-            @*<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">*@
             @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
             @Html.ValidationMessageFor(u => u.Password)
 
             @Html.ValidationSummary(true)
-            
+
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+            <div>@Html.ActionLink("Register", "Registration", "User") for new account</div>
+            <div>@Html.ActionLink("Forgot Password", "ForgotPassword", "User") if you forgot your username or password</div>
+        </div>*@
+        
+        <div id="loginbox" style="margin-top: 50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Sign In</div>
+                    <div style="float: right; font-size: 80%; position: relative; top: -10px">
+                        @Html.ActionLink("Forgot Password?", "ForgotPassword", "User")
+                    </div>
+                </div>
+
+                <div style="padding-top: 30px" class="panel-body">
+
+                    @Html.ValidationSummary("", new { @class = "alert alert-danger col-sm-12" })
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @*<input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username">*@
+                        @Html.TextBoxFor(u => u.UserName, new { @class = "form-control", @placeholder = "Username" })
+                        @*@Html.ValidationMessageFor(u => u.UserName)*@
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        @*<input id="login-password" type="password" class="form-control" name="password" placeholder="password">*@
+                        @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
+                        @*@Html.ValidationMessageFor(u => u.Password)*@
+                    </div>
+
+                    <div style="margin-top: 10px" class="form-group">
+                        <!-- Button -->
+                        <div class="col-sm-12 controls">
+                            @*<a id="btn-login" href="#" class="btn btn-success" style="width: 100%;">Login  </a>*@
+                            <button class="btn btn-success" type="submit" onclick="waitingDialog.show('Signing in...');" style="width: 100%;">Login</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 control">
+                            <div style="padding-top: 15px; font-size: 85%; float: right;">
+                                Don't have an account! 
+                                        @Html.ActionLink("Sign Up Here", "Registration", "User")
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
         </div>
     
     }

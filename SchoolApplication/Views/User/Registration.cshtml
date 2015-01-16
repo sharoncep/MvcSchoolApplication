@@ -7,7 +7,7 @@
 
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true, "Registration Unsuccesful");
+    @Html.ValidationSummary(true, "Registration Failed", new { @class = "alert alert-danger" });
     <div>
         <fieldset>
             <legend>Student Registration</legend>
@@ -37,8 +37,11 @@
                 @Html.ValidationMessageFor(u => u.Email)
             </div>
 
-            <input type="submit" value="Register" />
-            <div>@ViewBag.SuccessMessage</div>
+            <input type="submit" value="Register" data-loading-text="Loading..." class="btn btn-primary" />
+            @if (ViewBag.SuccessMessage != "")
+            {
+                <div class="alert alert-success col-sm-12">@ViewBag.SuccessMessage</div>
+            }
         </fieldset>
     </div>
 }
