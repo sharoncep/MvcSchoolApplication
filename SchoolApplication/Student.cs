@@ -20,11 +20,11 @@ namespace SchoolApplication
         public System.DateTime DOB { get; set; }
         public int DepartmentId { get; set; }
         public string Gender { get; set; }
+        public string Email { get; set; }
         public System.DateTime DateOfEnroll { get; set; }
         public Nullable<System.DateTime> DateOfPassOut { get; set; }
         public string PhotoPath { get; set; }
         public bool IsActive { get; set; }
-        public string Email { get; set; }
     
         public virtual Department Department { get; set; }
     }

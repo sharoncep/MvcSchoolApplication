@@ -15,16 +15,16 @@ namespace SchoolApplication
     public partial class Teacher
     {
         public int TeacherId { get; set; }
+        public string EmployeeId { get; set; }
         public string Name { get; set; }
         public int DepartmentId { get; set; }
         public string Gender { get; set; }
         public int SubjectId { get; set; }
-        public bool IsActive { get; set; }
-        public string Email { get; set; }
-        public string EmployeeId { get; set; }
         public Nullable<System.DateTime> DOJ { get; set; }
-        public string PhotoPath { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
+        public string Email { get; set; }
+        public string PhotoPath { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual Department Department { get; set; }
         public virtual Subject Subject { get; set; }

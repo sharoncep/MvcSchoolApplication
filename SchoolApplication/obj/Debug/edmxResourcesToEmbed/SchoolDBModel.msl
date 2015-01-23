@@ -5,6 +5,7 @@
       <EntityTypeMapping TypeName="SchoolDBModel.Department">
         <MappingFragment StoreEntitySet="Department">
           <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
           <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
         </MappingFragment>
@@ -13,10 +14,10 @@
     <EntitySetMapping Name="Logins">
       <EntityTypeMapping TypeName="SchoolDBModel.Login">
         <MappingFragment StoreEntitySet="Logins">
-          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
           <ScalarProperty Name="LoginId" ColumnName="LoginId" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
           <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -26,13 +27,13 @@
     <EntitySetMapping Name="Students">
       <EntityTypeMapping TypeName="SchoolDBModel.Student">
         <MappingFragment StoreEntitySet="Student">
-          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
           <ScalarProperty Name="RollNo" ColumnName="RollNo" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="DOB" ColumnName="DOB" />
           <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="DateOfEnroll" ColumnName="DateOfEnroll" />
           <ScalarProperty Name="DateOfPassOut" ColumnName="DateOfPassOut" />
           <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
@@ -53,16 +54,16 @@
     <EntitySetMapping Name="Teachers">
       <EntityTypeMapping TypeName="SchoolDBModel.Teacher">
         <MappingFragment StoreEntitySet="Teacher">
-          <ScalarProperty Name="DOB" ColumnName="DOB" />
-          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
-          <ScalarProperty Name="DOJ" ColumnName="DOJ" />
-          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -70,14 +71,14 @@
     <EntitySetMapping Name="TimeTables">
       <EntityTypeMapping TypeName="SchoolDBModel.TimeTable">
         <MappingFragment StoreEntitySet="TimeTable">
-          <ScalarProperty Name="SubjectOrder" ColumnName="SubjectOrder" />
-          <ScalarProperty Name="TimeTo" ColumnName="TimeTo" />
-          <ScalarProperty Name="TimeFrom" ColumnName="TimeFrom" />
-          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
-          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
-          <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
           <ScalarProperty Name="TimeTableId" ColumnName="TimeTableId" />
+          <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="TimeFrom" ColumnName="TimeFrom" />
+          <ScalarProperty Name="TimeTo" ColumnName="TimeTo" />
+          <ScalarProperty Name="SubjectOrder" ColumnName="SubjectOrder" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

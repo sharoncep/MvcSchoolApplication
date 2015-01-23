@@ -14,7 +14,9 @@ namespace SchoolApplication.Areas.Admin.Controllers
 
         public ActionResult Listing()
         {
-            return View();
+            var objModel = new Models.DepartmentModel();
+            objModel.GetDepartment();
+            return View(objModel);
         }
 
         [HttpGet]
@@ -35,6 +37,7 @@ namespace SchoolApplication.Areas.Admin.Controllers
                     if (departmentName == null)
                     {
                         var department = ctx.Departments.Create();
+                        department.DepartmentCode = objModel.DepartmentCode;
                         department.DepartmentName = objModel.DepartmentName;
                         department.IsActive = objModel.IsActive;
 
@@ -49,9 +52,62 @@ namespace SchoolApplication.Areas.Admin.Controllers
             return View(objModel);
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int Id)
         {
-            return View();
+            var objModel = new Models.DepartmentModel();
+
+            using (var ctx = new SchoolDBContext())
+            {
+                var department = ctx.Departments.FirstOrDefault(x => x.DepartmentId == Id);
+                if (department != null)
+                {
+                    objModel.DepartmentId = department.DepartmentId;
+                    objModel.DepartmentCode = department.DepartmentCode;
+                    objModel.DepartmentName = department.DepartmentName;
+                    objModel.IsActive = department.IsActive;
+                    objModel.HiddenValue = department.DepartmentName;
+                }
+            }
+
+            return View(objModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Models.DepartmentModel objModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                using (var ctx = new SchoolDBContext())
+                {
+                    Department departmentName = null;
+
+                    if (objModel.DepartmentName != objModel.HiddenValue)
+                    {
+                        departmentName =
+                           ctx.Departments.FirstOrDefault(x => x.DepartmentName == objModel.DepartmentName);
+                    }
+
+                    if (departmentName == null)
+                    {
+                        var department = ctx.Departments.FirstOrDefault(x => x.DepartmentId == objModel.DepartmentId);
+                        department.DepartmentCode = objModel.DepartmentCode;
+                        department.DepartmentName = objModel.DepartmentName;
+                        department.IsActive = objModel.IsActive;
+
+                        ctx.SaveChanges();
+
+                        ViewBag.message = "Department updated successfully";
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Department name already exist");
+                        return View(objModel);
+
+                    }
+                }
+            }
+            return RedirectToAction("Listing");
         }
 
     }

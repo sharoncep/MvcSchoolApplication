@@ -40,6 +40,7 @@
       <PropertyRef Name="DepartmentId" />
     </Key>
     <Property Name="DepartmentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentCode" Type="nvarchar" MaxLength="50" />
     <Property Name="DepartmentName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>

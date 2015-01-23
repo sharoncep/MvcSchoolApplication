@@ -6,6 +6,7 @@
     <EntitySet Name="Students" EntityType="SchoolDBModel.Student" />
     <EntitySet Name="Subjects" EntityType="SchoolDBModel.Subject" />
     <EntitySet Name="Teachers" EntityType="SchoolDBModel.Teacher" />
+    <EntitySet Name="TimeTables" EntityType="SchoolDBModel.TimeTable" />
     <AssociationSet Name="FK__Student__Departm__2A4B4B5E" Association="SchoolDBModel.FK__Student__Departm__2A4B4B5E">
       <End Role="Department" EntitySet="Departments" />
       <End Role="Student" EntitySet="Students" />
@@ -22,13 +23,13 @@
       <End Role="Subject" EntitySet="Subjects" />
       <End Role="Teacher" EntitySet="Teachers" />
     </AssociationSet>
-    <EntitySet Name="TimeTables" EntityType="SchoolDBModel.TimeTable" />
   </EntityContainer>
   <EntityType Name="Department">
     <Key>
       <PropertyRef Name="DepartmentId" />
     </Key>
     <Property Name="DepartmentId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Students" Relationship="SchoolDBModel.FK__Student__Departm__2A4B4B5E" FromRole="Department" ToRole="Student" />
@@ -42,10 +43,10 @@
     <Property Name="LoginId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
     <Property Name="Role" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="UserId" Type="Int32" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
-    <Property Type="String" Name="PasswordSalt" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -57,12 +58,12 @@
     <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DepartmentId" Type="Int32" Nullable="false" />
     <Property Name="Gender" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="DateOfEnroll" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="DateOfPassOut" Type="DateTime" Precision="0" />
     <Property Name="PhotoPath" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Department" Relationship="SchoolDBModel.FK__Student__Departm__2A4B4B5E" FromRole="Student" ToRole="Department" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Subject">
     <Key>
@@ -80,18 +81,35 @@
       <PropertyRef Name="TeacherId" />
     </Key>
     <Property Name="TeacherId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="DepartmentId" Type="Int32" Nullable="false" />
     <Property Name="Gender" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
     <Property Name="SubjectId" Type="Int32" Nullable="false" />
+    <Property Name="DOJ" Type="DateTime" Precision="3" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PhotoPath" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Department" Relationship="SchoolDBModel.FK__Teacher__Departm__2B3F6F97" FromRole="Teacher" ToRole="Department" />
     <NavigationProperty Name="Subject" Relationship="SchoolDBModel.FK__Teacher__Subject__2C3393D0" FromRole="Teacher" ToRole="Subject" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="EmployeeId" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="DOJ" Precision="3" />
-    <Property Type="String" Name="PhotoPath" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="DOB" Precision="3" />
+  </EntityType>
+  <EntityType Name="TimeTable">
+    <Key>
+      <PropertyRef Name="TimeTableId" />
+      <PropertyRef Name="DayOfWeek" />
+      <PropertyRef Name="TimeFrom" />
+      <PropertyRef Name="TimeTo" />
+      <PropertyRef Name="SubjectOrder" />
+    </Key>
+    <Property Name="TimeTableId" Type="Int32" Nullable="false" />
+    <Property Name="DayOfWeek" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SubjectId" Type="Int32" />
+    <Property Name="TeacherId" Type="Int32" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="TimeFrom" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="TimeTo" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="SubjectOrder" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK__Student__Departm__2A4B4B5E">
     <End Role="Department" Type="SchoolDBModel.Department" Multiplicity="1" />
@@ -141,21 +159,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="TimeTable">
-    <Key>
-      <PropertyRef Name="TimeTableId" />
-      <PropertyRef Name="DayOfWeek" />
-      <PropertyRef Name="TimeFrom" />
-      <PropertyRef Name="TimeTo" />
-      <PropertyRef Name="SubjectOrder" />
-    </Key>
-    <Property Type="Int32" Name="TimeTableId" Nullable="false" />
-    <Property Type="String" Name="DayOfWeek" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="Int32" Name="SubjectId" />
-    <Property Type="Int32" Name="TeacherId" />
-    <Property Type="Int32" Name="DepartmentId" />
-    <Property Type="Time" Name="TimeFrom" Nullable="false" Precision="7" />
-    <Property Type="Time" Name="TimeTo" Nullable="false" Precision="7" />
-    <Property Type="Int32" Name="SubjectOrder" Nullable="false" />
-  </EntityType>
 </Schema>

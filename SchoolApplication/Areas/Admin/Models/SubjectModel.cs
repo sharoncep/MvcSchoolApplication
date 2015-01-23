@@ -12,6 +12,11 @@ namespace SchoolApplication.Areas.Admin.Models
     {
         #region Properties
 
+
+        public string HiddenValue { get; set; }
+
+        public string SubjectId { get; set; }
+
         [Required]
         public string SubjectName { get; set; }
 

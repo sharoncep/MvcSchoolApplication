@@ -1,82 +1,69 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
+    <!-- Bootstrap Core CSS -->
+    @Styles.Render("~/Content/bootstrap.min.css")
+
+    <!-- MetisMenu CSS -->
+    @Styles.Render("~/bower_components/metisMenu/dist/metisMenu.min.css")
+
+    <!-- Custom CSS -->
+    @Styles.Render("~/dist/css/sb-admin-2.css")
+
+    <!-- DataTables Responsive CSS -->
+    @Styles.Render("~/bower_components/datatables/media/css/jquery.dataTables.min.css")
+    @Styles.Render("~/bower_components/datatables-responsive/css/dataTables.responsive.css")
+
+    <!-- Custom Fonts -->
+    @Styles.Render("~/bower_components/font-awesome/css/font-awesome.min.css")
+    @Styles.Render("~/Content/Site.css")
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    @* @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/bootstrap-responsive.min.css")
+    @Styles.Render("~/Content/jquery.datetimepicker.css")
+
+    <!-- MetisMenu CSS -->
+    @Styles.Render("~/bower_components/metisMenu/dist/metisMenu.min.css")
+
+    <!-- Timeline CSS -->
+    @Styles.Render("~/dist/css/timeline.css")
+
+    <!-- Custom CSS -->
+    @Styles.Render("~/dist/css/sb-admin-2.css")
+
+    <!-- Morris Charts CSS -->
+    @Styles.Render("~/bower_components/morrisjs/morris.css")
+
+    <!-- Custom Fonts -->
+    @Styles.Render("~/bower_components/font-awesome/css/font-awesome.min.css")*@
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/Scripts/bootstrap.min.js")
-    @Scripts.Render("~/Scripts/CustomJs/LoadingDiv.js")
-    @RenderSection("scripts", required: false)
-
-    @* http://stackoverflow.com/questions/12197323/how-to-to-include-javascript-into-the-page-header-mvc4 *@
-
-    @RenderSection("JavaScript", required: false)
-    @RenderSection("CSS", required: false)
 </head>
 <body>
     <!-- Wrap all page content here -->
-    <div id="wrap">
-        <header class="top" role="header">
-            <!-- Fixed navbar -->
-            @if (Request.IsAuthenticated)
-            {
-                if (User.IsInRole("Admin"))
-                {
-                @Html.Partial("~/Areas/Admin/Views/Shared/_AdminHome.cshtml")}
-
-                if (User.IsInRole("Student"))
-                {
-                @Html.Partial("~/Areas/Student/Views/Shared/_StudentHome.cshtml")}
-
-                if (User.IsInRole("Teacher"))
-                {
-                @Html.Partial("~/Areas/Teacher/Views/Shared/_TeacherHome.cshtml")}
-            }
-        </header>
-        <!-- Begin page content -->
-        <div class="center-container">
-            <div class="center-row">
-                <div class="col-xs-6">@RenderBody()</div>
-            </div>
-
-            <div class="col-md-3">
-                @if (Request.IsAuthenticated)
-                {
-                    if (User.IsInRole("Student"))
-                    {
-                    @Html.Partial("~/Areas/Student/Views/Shared/_Notification.cshtml")}
-
-                    if (User.IsInRole("Teacher"))
-                    {
-                    @Html.Partial("~/Areas/Teacher/Views/Shared/_Notification.cshtml")}
-                }
-            </div>
-            @*<div class="center-row">
-
-                    @RenderBody()
-
-                </div>*@
-
-
-
-        </div>
-
-    </div>
-
-    <div id="footer">
-        <div class="container">
-            <p class="lead" style="text-align: center;"><span class="glyphicon glyphicon-copyright-mark"></span>@DateTime.Now.Year</p>
-        </div>
-    </div>
-
-    @*<header class="top" role="header">
+    <div id="wrapper">
+        <!-- Fixed navbar -->
         @if (Request.IsAuthenticated)
         {
             if (User.IsInRole("Admin"))
@@ -91,43 +78,79 @@
             {
             @Html.Partial("~/Areas/Teacher/Views/Shared/_TeacherHome.cshtml")}
         }
-    </header>
-    <div class="banner">
-        <div class="container">
-        </div>
-    </div>
-    <div class="middle">
-        <div class="container">
-            <div class="col-md-9 content">
-                @RenderBody()
-            </div>
-            <div class="col-md-3">
-                @if (Request.IsAuthenticated)
+
+        <!-- Begin page content -->
+        @RenderBody()
+
+        @*<div class="col-md-3">
+            @if (Request.IsAuthenticated)
+            {
+                if (User.IsInRole("Student"))
                 {
-                    if (User.IsInRole("Student"))
-                    {
-                    @Html.Partial("~/Areas/Student/Views/Shared/_Notification.cshtml")}
+                @Html.Partial("~/Areas/Student/Views/Shared/_Notification.cshtml")}
 
-                    if (User.IsInRole("Teacher"))
-                    {
-                    @Html.Partial("~/Areas/Teacher/Views/Shared/_Notification.cshtml")}
-                }
+                if (User.IsInRole("Teacher"))
+                {
+                @Html.Partial("~/Areas/Teacher/Views/Shared/_Notification.cshtml")}
+            }
+        </div>*@
+
+        <div id="footer">
+            <div class="container">
+                <p class="lead" style="text-align: center;"><span class="glyphicon glyphicon-copyright-mark"></span>@DateTime.Now.Year</p>
             </div>
         </div>
     </div>
 
-    <div class="bottom" id="footer">
-        <div class="container">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-                <h5>Copyrights @DateTime.Now.Year</h5>
-            </div>
-            <div class="col-md-4">
-            </div>
-        </div>
-    </div>*@
+    <!-- jQuery -->
+    @Scripts.Render("~/bundles/jquery")
 
+    <!-- Bootstrap Core JavaScript -->
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+
+    <!-- Metis Menu Plugin JavaScript -->
+    @Scripts.Render("~/bower_components/metisMenu/dist/metisMenu.min.js")
+
+    <!-- Custom Theme JavaScript -->
+    @Scripts.Render("~/dist/js/sb-admin-2.js")
+
+    <!-- DataTables JavaScript -->
+    @Scripts.Render("~/bower_components/DataTables/media/js/jquery.dataTables.min.js")
+    @*@Scripts.Render("~/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js")*@
+
+    @* @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/CustomJs/LoadingDiv.js")
+    @Scripts.Render("~/Scripts/jquery.datetimepicker.js")
+    @RenderSection("scripts", required: false)
+
+
+    <!-- Metis Menu Plugin JavaScript -->
+    @Scripts.Render("~/bower_components/metisMenu/dist/metisMenu.min.js")
+
+    <!-- Morris Charts JavaScript -->
+    @Scripts.Render("~/bower_components/raphael/raphael-min.js")
+    @Scripts.Render("~/bower_components/morrisjs/morris.min.js")
+    @Scripts.Render("~/Scripts/morris-data.js")
+
+    <!-- Custom Theme JavaScript -->
+    @Scripts.Render("~/dist/js/sb-admin-2.js")
+
+
+
+     http://stackoverflow.com/questions/12197323/how-to-to-include-javascript-into-the-page-header-mvc4 
+
+    @RenderSection("JavaScript", required: false)
+    @RenderSection("CSS", required: false)*@
+
+    <script>
+        $(document).ready(function () {
+            $("#JQdataTable").DataTable({
+                responsive: true
+            });
+        });
+    </script>
 
 </body>
 </html>
