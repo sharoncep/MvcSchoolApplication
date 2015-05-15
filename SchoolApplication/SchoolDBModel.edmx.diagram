@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="SchoolDBModel.Department" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolDBModel.Login" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolDBModel.Student" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SchoolDBModel.Subject" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Subject" Width="1.875" PointX="2.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolDBModel.Teacher" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolDBModel.TimeTable" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="SchoolDBModel.FK__Student__Departm__2A4B4B5E" ManuallyRouted="false" />

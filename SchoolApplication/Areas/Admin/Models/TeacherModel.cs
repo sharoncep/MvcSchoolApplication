@@ -31,10 +31,12 @@ namespace SchoolApplication.Areas.Admin.Models
 
         [Required]
         [DataType(DataType.Date)]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DOJ { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DOB { get; set; }
 
         [Required]

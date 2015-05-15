@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "NotFound";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script>
+    $(document).ready(function () {
+        $("#page-wrapper").css('margin', '0px');
+        $("#side-menu").hide();
+    });
+</script>
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Oops, 404!</h1>
+
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="alert alert-danger">
+                        Sorry, that page doesn't exist!
+                    </div>
+                   @* @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+                    {
+                        <div class="alert alert-info">
+                            <p>
+                                <b>Exception:</b> @Model.Exception.Message<br />
+                                <b>Controller:</b> @Model.ControllerName<br />
+                                <b>Action:</b> @Model.ActionName
+                            </p>
+
+                        </div>
+                    }*@
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+</div>
+
+
+

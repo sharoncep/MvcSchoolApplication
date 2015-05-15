@@ -75,6 +75,7 @@
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Department" Relationship="SchoolDBModel.FK__Subject__Departm__2D27B809" FromRole="Subject" ToRole="Department" />
     <NavigationProperty Name="Teachers" Relationship="SchoolDBModel.FK__Teacher__Subject__2C3393D0" FromRole="Subject" ToRole="Teacher" />
+    <Property Type="String" Name="SubjectCode" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Teacher">
     <Key>

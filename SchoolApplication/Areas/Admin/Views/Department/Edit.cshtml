@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Department", FormMethod.Post, new { id = "myForm" }))
 {
     <div id="page-wrapper">
         <div class="row">
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
 
-                                <button onclick="waitingDialog.show('Saving...');" type="submit" class="btn btn-primary">Save</button>
+                                <button onclick="validate();" type="submit" class="btn btn-primary" id="btnSave">Save</button>
                                 @if (ViewBag.message != null)
                                 {
                                     <div class="alert alert-success col-sm-12">@ViewBag.message</div>
@@ -69,3 +69,47 @@
     </div>
 
 }
+<script>
+    function validate() {
+        bootbox.confirm("Are you sure you want to disable this record?", function (result) {
+            if (result) {
+                return true;
+            } else {
+                return false;
+            }
+
+        });
+
+        //alert("hi");
+        //if ($('#IsActive').prop('checked')) {
+        //    waitingDialog.show('Saving...');
+        //    return true;
+        //} else {
+        //    bootbox.confirm("Are you sure you want to disable this record?", function (result) {
+        //        if (result == "True") {
+        //            waitingDialog.show('Saving...');
+        //            alert("true");
+        //            return true;
+        //        } else {
+        //            alert("false");
+        //            return false;
+        //        }
+
+        //    });
+        //}
+        return false;
+    }
+
+    $(function () {
+        $('#btnSave').click(function () {
+            bootbox.dialog({
+                message: "Are you sure you want to disable this record ?", title: "Confirm",
+                buttons: {
+                    main: { label: "No", className: "btn btn-default", callback: function () { return true; } },
+                    success: { label: "Yes", className: "btn btn-default", callback: function () { $('#myForm').submit(); waitingDialog.show('Saving...'); } }
+                }
+            });
+        });
+    });
+
+</script>

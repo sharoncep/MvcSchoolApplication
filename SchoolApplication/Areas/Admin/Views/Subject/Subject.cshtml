@@ -1,0 +1,15 @@
+﻿@using SchoolApplication.UtilityClass
+@model SchoolApplication.Areas.Admin.Models.Subj
+
+<div class="editorRow">
+    @using (Html.BeginCollectionItem("Add"))
+    {
+    Item:
+        @Html.TextBoxFor(x => x.SubjectName);
+    Value:
+        @Html.CheckBoxFor(x => x.IsActive);
+
+    }
+
+    <a href="#" class="deleteRow">delete</a>
+</div>

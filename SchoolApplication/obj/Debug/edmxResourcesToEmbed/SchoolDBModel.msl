@@ -44,6 +44,7 @@
     <EntitySetMapping Name="Subjects">
       <EntityTypeMapping TypeName="SchoolDBModel.Subject">
         <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
           <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
           <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
           <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />

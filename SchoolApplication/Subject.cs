@@ -23,6 +23,7 @@ namespace SchoolApplication
         public string SubjectName { get; set; }
         public int DepartmentId { get; set; }
         public bool IsActive { get; set; }
+        public string SubjectCode { get; set; }
     
         public virtual Department Department { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }

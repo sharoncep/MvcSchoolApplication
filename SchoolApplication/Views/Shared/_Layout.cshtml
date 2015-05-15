@@ -24,6 +24,35 @@
     <!-- Custom Fonts -->
     @Styles.Render("~/bower_components/font-awesome/css/font-awesome.min.css")
     @Styles.Render("~/Content/Site.css")
+    @*@Styles.Render("~/Content/jquery.datetimepicker.css")*@
+
+    @Styles.Render("~/Content/bootstrap-datetimepicker.min.css")
+    @Styles.Render("~/Content/bootstrap-select.min.css")
+    @Styles.Render("~/Content/bootstrap-checkbox.css")
+
+    @Styles.Render("~/Content/bootstrap-switch.min.css")
+
+    <!-- jQuery -->
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/Scripts/jquery.datetimepicker.js")*@
+    @Scripts.Render("~/Scripts/moment.min.js")
+
+    <!-- Bootstrap Core JavaScript -->
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/bootstrap-datetimepicker.min.js")
+
+    @*http://silviomoreto.github.io/bootstrap-select/*@
+    @Scripts.Render("~/Scripts/bootstrap-select.min.js")
+
+    @*http://montrezorro.github.io/bootstrap-checkbox/*@
+    @Scripts.Render("~/Scripts/bootstrap-checkbox.js")
+
+    @*http://www.bootstrap-switch.org/options.html*@
+    @Scripts.Render("~/Scripts/bootstrap-switch.min.js")
+    
+    @*http://bootboxjs.com/examples.html*@
+    @Scripts.Render("~/Scripts/bootbox.min.js")
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -97,16 +126,11 @@
 
         <div id="footer">
             <div class="container">
-                <p class="lead" style="text-align: center;"><span class="glyphicon glyphicon-copyright-mark"></span>@DateTime.Now.Year</p>
+                <p class="lead" style="text-align: center; color: #808080;"><span class="glyphicon glyphicon-copyright-mark"></span>@DateTime.Now.Year</p>
             </div>
         </div>
     </div>
 
-    <!-- jQuery -->
-    @Scripts.Render("~/bundles/jquery")
-
-    <!-- Bootstrap Core JavaScript -->
-    @Scripts.Render("~/Scripts/bootstrap.min.js")
 
     <!-- Metis Menu Plugin JavaScript -->
     @Scripts.Render("~/bower_components/metisMenu/dist/metisMenu.min.js")
@@ -118,10 +142,10 @@
     @Scripts.Render("~/bower_components/DataTables/media/js/jquery.dataTables.min.js")
     @*@Scripts.Render("~/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js")*@
 
+    @Scripts.Render("~/Scripts/CustomJs/LoadingDiv.js")
     @* @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/bootstrap.min.js")
-    @Scripts.Render("~/Scripts/CustomJs/LoadingDiv.js")
     @Scripts.Render("~/Scripts/jquery.datetimepicker.js")
     @RenderSection("scripts", required: false)
 
@@ -149,6 +173,16 @@
             $("#JQdataTable").DataTable({
                 responsive: true
             });
+
+            $('#IsActive').bootstrapSwitch({
+                onText: 'Yes',
+                onColor: 'success',
+                offText: 'No',
+                offColor: 'warning',
+                size: 'small'
+            });
+
+            $('.checkbox label').css('padding-left', '0px');
         });
     </script>
 

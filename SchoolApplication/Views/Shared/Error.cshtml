@@ -1,16 +1,69 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "Error";
+                        //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <h2>
-        Sorry, an error occurred while processing your request.
-    </h2>
-</body>
-</html>
+<script>
+    $(document).ready(function () {
+        $("#page-wrapper").css('margin', '0px');
+        $("#side-menu").hide();
+    });
+</script>
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header text-center">Something went wrong !</h1>
+
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary text-center">
+                <div class="panel-body">
+                    <div class="alert alert-danger">
+                        An unexpected error has occurred. Please contact the system administrator.
+                    </div>
+                    @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+                    {
+                        <div class="alert alert-info">
+                            <p>
+                                <b>Exception:</b> @Model.Exception.Message<br />
+                                <b>Controller:</b> @Model.ControllerName<br />
+                                <b>Action:</b> @Model.ActionName
+                            </p>
+
+                        </div>
+                    }
+
+                </div>
+                @if (Request.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                    @Html.ActionLink("Back to Home", "Home", "AdminProfile", new { @class = "btn btn-outline btn-primary pull-right" })
+                    }
+                    if (User.IsInRole("Student"))
+                    {
+                    @Html.ActionLink("Back to Home", "Home", "AdminProfile", new { @class = "btn btn-outline btn-primary pull-right" })
+                    }
+                    if (User.IsInRole("Teacher"))
+                    {
+                    @Html.ActionLink("Back to Home", "Home", "AdminProfile", new { @class = "btn btn-outline btn-primary pull-right" })
+                    }
+                }
+
+
+                <!-- /.panel-body -->z
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+</div>
+
+

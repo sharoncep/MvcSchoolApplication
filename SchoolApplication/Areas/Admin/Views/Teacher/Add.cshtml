@@ -3,48 +3,155 @@
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Html.Partial("_AdminHome")
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary()
-    <fieldset>
-        <legend>Add New Teacher</legend>
-        <div>Employee Id</div>
-        <div>@Html.TextBoxFor(x => x.EmployeeId)
-            @Html.ValidationMessageFor(x => x.EmployeeId)
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Add New Teacher</h2>
+            </div>
+            <!-- /.col-lg-12 -->
         </div>
-        <div>Name</div>
-        <div>@Html.TextBoxFor(x => x.Name)
-            @Html.ValidationMessageFor(x => x.Name)
-        </div>
-        <div>Gender</div>
-        <div>@Html.DropDownListFor(u => u.Gender, Model.GetGender())
-            @Html.ValidationMessageFor(x => x.Gender)
-        </div>
-        <div>Date of Birth</div>
-        <div>@Html.TextBoxFor(x => x.DOB, new { placeholder = "Select DOB", @type = "date" })
-            @Html.ValidationMessageFor(x => x.DOB)
-        </div>
-        <div>Department</div>
-        <div>@Html.DropDownListFor(u => u.DepartmentId, Model.GetDepartments())
-            @Html.ValidationMessageFor(x => x.DepartmentId)
-        </div>
-        <div>Subject</div>
-        <div>@Html.DropDownListFor(u => u.SubjectId, Model.GetSubjects())
-            @Html.ValidationMessageFor(x => x.SubjectId)
-        </div>
-        <div>Date of Joining</div>
-        <div>@Html.TextBoxFor(x => x.DOJ, new { placeholder = "Select DOJ", @type = "date" })
-            @Html.ValidationMessageFor(x => x.DOJ)
-        </div>
-        <div>Email</div>
-        <div>@Html.TextBoxFor(x => x.Email)
-            @Html.ValidationMessageFor(x => x.Email)
-        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    @* <div class="panel-heading">
+                        Basic Form Elements
+                    </div>*@
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @Html.ValidationSummary(true, "Can't save teacher!", new { @class = "alert alert-danger" })
 
-        <div>Is Active @Html.CheckBoxFor(x => x.IsActive, true)</div>
+                                <div class="form-group">
+                                    <label>Employee Id</label>
+                                    @Html.TextBoxFor(x => x.EmployeeId, new { @class = "form-control", @placeholder = "Employee Id" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.EmployeeId, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Employee Name</label>
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Employee Name" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.Name, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    @Html.DropDownListFor(u => u.Gender, Model.GetGender(), new { @class = "form-control" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.Gender, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    @*http://stackoverflow.com/a/13702321/2934820*@
+                                    <label>Date of Birth</label>
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        @Html.TextBoxFor(x => x.DOB, "{0:MM/dd/yyyy}", new { @id = "DOB", @class = "form-control", @placeholder = "Select DOB", @Value = @DateTime.Now.ToString("MM/dd/yyyy") })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.DOB, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    @Html.DropDownListFor(u => u.DepartmentId, Model.GetDepartments(), new { @class = "form-control selectpicker" })
+                                    @Html.ActionLink("Add New Department", "Add", new { controller = "Department" }, new { @style = "float: right;", @class = "" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.DepartmentId, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Subject</label>
+                                    @Html.DropDownListFor(u => u.SubjectId, Model.GetSubjects(), new { @class = "form-control selectpicker" })
+                                    @Html.ActionLink("Add New Subject", "Add", new { controller = "Subject" }, new { @style = "float: right;", @class = "" })
 
-        <input type="submit" value="Save" />
-        <span style="color: green">@ViewBag.message</span>
-    </fieldset>
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.SubjectId, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Date of Joining</label>
+                                    <div class='input-group date' id='datetimepicker2'>
+                                        @Html.TextBoxFor(x => x.DOJ, "{0:MM/dd/yyyy}", new { @id = "DOJ", @class = "form-control", @placeholder = "Select DOJ", @Value = @DateTime.Now.ToString("MM/dd/yyyy") })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.DOJ, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.Email, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Is Active</label>
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(x => x.IsActive, new { @checked = true })
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button onclick="waitingDialog.show('Saving...');" type="submit" class="btn btn-primary pull-right">Save</button>
+                                @if (ViewBag.message != null)
+                                {
+                                    <div class="alert alert-success col-sm-12">@ViewBag.message</div>
+                                }
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                            <div class="col-lg-6">
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                        </div>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
 }
+
+<script>
+
+    $(document).ready(function () {
+        //$("#DOJ").datetimepicker({
+        //    timepicker: false,
+        //    format: 'm/d/Y',
+        //    closeOnDateSelect: true,
+        //    defaultDate: new Date()
+        //});
+        //$("#DOB").datetimepicker({
+        //    timepicker: false,
+        //    format: 'm/d/Y',
+        //    closeOnDateSelect: true,
+        //    defaultDate: new Date()
+        //});
+
+
+        $('#datetimepicker1').datetimepicker({
+            format: 'MM/DD/YYYY'
+        });
+
+        $('#datetimepicker2').datetimepicker({
+            format: 'MM/DD/YYYY'
+        });
+
+        $('.selectpicker').selectpicker({
+            //style: 'btn-info',
+            liveSearch: 'true',
+            size: 5
+        });
+
+        $('#Gender').selectpicker({
+            size: 2
+        });
+
+        //$('#IsActive').checkbox({
+        //    buttonStyle: 'btn-link btn-large',
+        //    buttonStyleChecked: 'btn-success',
+        //    //checkedClass: 'icon-check',
+        //    //uncheckedClass: 'icon-check-empty'
+        //});
+
+       
+    });
+
+
+</script>

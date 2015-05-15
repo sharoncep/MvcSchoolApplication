@@ -14,13 +14,16 @@ namespace SchoolApplication.Areas.Admin.Controllers
 
         public ActionResult Listing()
         {
-            return View();
+            var objModel = new Models.SubjectModel();
+            objModel.GetSubjects();
+            return View(objModel);
         }
 
         [HttpGet]
         public ActionResult Add()
         {
             var objModel = new Models.SubjectModel();
+            objModel.IsActive = true;
             return View(objModel);
         }
 
@@ -29,6 +32,10 @@ namespace SchoolApplication.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                //foreach (var subj in objModel)
+                //{
+                //    Response.Write(subj.SubjectName + " " + subj.IsActive + "<br>");
+                //}
                 using (var ctx = new SchoolDBContext())
                 {
                     var subjectDb =
@@ -37,6 +44,7 @@ namespace SchoolApplication.Areas.Admin.Controllers
                     if (subjectDb == null)
                     {
                         var subject = ctx.Subjects.Create();
+                        subject.SubjectCode = objModel.SubjectCode;
                         subject.SubjectName = objModel.SubjectName;
                         subject.DepartmentId = objModel.DepartmentId;
                         subject.IsActive = objModel.IsActive;
@@ -51,9 +59,69 @@ namespace SchoolApplication.Areas.Admin.Controllers
             return View(objModel);
         }
 
-        public ActionResult Edit()
+        //public ViewResult BlankEditorRow()
+        //{
+        //    return View("Subject", new Models.Subj());
+        //}
+
+        public ActionResult Edit(int Id)
         {
-            return View();
+            var objModel = new Models.SubjectModel();
+
+            using (var ctx = new SchoolDBContext())
+            {
+                var subject = ctx.Subjects.FirstOrDefault(x => x.SubjectId == Id);
+                if (subject != null)
+                {
+                    objModel.SubjectId = subject.SubjectId;
+                    objModel.DepartmentId = subject.DepartmentId;
+                    objModel.SubjectCode = subject.SubjectCode;
+                    objModel.SubjectName = subject.SubjectName;
+                    objModel.IsActive = subject.IsActive;
+                    objModel.HiddenValue = subject.SubjectName;
+                }
+            }
+
+            return View(objModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Models.SubjectModel objModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                using (var ctx = new SchoolDBContext())
+                {
+                    Subject subjectName = null;
+
+                    if (objModel.SubjectName != objModel.HiddenValue)
+                    {
+                        subjectName =
+                           ctx.Subjects.FirstOrDefault(x => x.SubjectName == objModel.SubjectName && x.DepartmentId == objModel.DepartmentId);
+                    }
+
+                    if (subjectName == null)
+                    {
+                        var subject = ctx.Subjects.FirstOrDefault(x => x.SubjectId == objModel.SubjectId && x.DepartmentId == objModel.DepartmentId);
+                        subject.SubjectCode = objModel.SubjectCode;
+                        subject.SubjectName = objModel.SubjectName;
+                        subject.DepartmentId = objModel.DepartmentId;
+                        subject.IsActive = objModel.IsActive;
+
+                        ctx.SaveChanges();
+
+                        ViewBag.message = "Subject updated successfully";
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Subject already exist for this department");
+                        return View(objModel);
+
+                    }
+                }
+            }
+            return RedirectToAction("Listing");
         }
 
     }

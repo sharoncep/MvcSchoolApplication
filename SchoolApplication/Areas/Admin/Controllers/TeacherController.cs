@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace SchoolApplication.Areas.Admin.Controllers
 {
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles = "Admin")]
     public class TeacherController : Controller
     {
         //
@@ -21,6 +21,9 @@ namespace SchoolApplication.Areas.Admin.Controllers
         public ActionResult Add()
         {
             var objModel = new Models.TeacherModel();
+            objModel.DOB = DateTime.Now;
+            objModel.IsActive = true;
+
             return View(objModel);
         }
 

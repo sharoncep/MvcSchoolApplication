@@ -6,98 +6,103 @@
 }
 
 
+<script>
+    $(document).ready(function () {
+        //jQuery('#DOB').datetimepicker({
+        //    timepicker: false,
+        //    format: 'm/d/Y',
+        //    closeOnDateSelect: true,
+        //    defaultDate: new Date()
+        //});
+        $('#datetimepicker1').datetimepicker({
+            format: 'MM/DD/YYYY'
+        });
+
+        $("#page-wrapper").css('margin', '0px');
+    });
+</script>
+
 @using (Html.BeginForm())
 {
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Student Registration</h3>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Student Registration @Html.ActionLink("Login", "LogIn", new { controller = "User" }, new { @class = "btn btn-success pull-right" })</h2>
+            </div>
+            <!-- /.col-lg-12 -->
         </div>
-        <div class="panel-body">
-            @Html.ValidationSummary(true, "Registration Failed", new { @class = "alert alert-danger" })
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    @* <div class="panel-heading">
+                        Basic Form Elements
+                    </div>*@
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @Html.ValidationSummary(true, "Registration Failed", new { @class = "alert alert-danger" })
 
-            <div class="form-group">
-                <div>
-                    @Html.LabelFor(u => u.UserName, new { @class = "control-label" })
-                </div>
-                <div class="col-xs-3">
-                    @Html.TextBoxFor(u => u.UserName, new { @placeholder = "Username", @class = "form-control" })
-                    <p class="help-block">@Html.ValidationMessageFor(u => u.UserName)</p>
-                </div>
-            </div>
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    @Html.TextBoxFor(u => u.UserName, new { @placeholder = "Username", @class = "form-control" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.UserName, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Roll No</label>
+                                    @Html.TextBoxFor(u => u.RollNo, new { @placeholder = "Roll No", @class = "form-control" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.RollNo, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    @Html.TextBoxFor(u => u.Name, new { @placeholder = "Name", @class = "form-control" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.Name, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    @Html.DropDownListFor(u => u.DepartmentId, Model.GetDepartments(), new { @class = "form-control" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.DepartmentId, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
 
-            <div class="form-group">
-                <div>
-                    @Html.Label("Roll No", new { @class = "control-label" })
-                </div>
-                <div class="col-xs-3">
-                    @Html.TextBoxFor(u => u.RollNo, new { @placeholder = "Roll No", @class = "form-control" })
-                    <p class="help-block">@Html.ValidationMessageFor(u => u.RollNo)</p>
-                </div>
-            </div>
+                                    <label>Date of birth</label>
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        @Html.TextBoxFor(x => x.Dob, "{0:MM/dd/yyyy}", new { @id = "DOB", @class = "form-control", @placeholder = "Select DOB", @Value = @DateTime.Now.ToString("MM/dd/yyyy") })
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.Dob, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    @Html.TextBoxFor(u => u.Email, new { placeholder = "Email", @autocomplete = "false", @class = "form-control" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.Email, null, new { @class = "alert-warning" })</p>
+                                </div>
 
-            <div class="form-group">
-                <div>
-                    @Html.Label("Name", new { @class = "control-label" })
-                </div>
-                <div class="col-xs-3">
-                    @Html.TextBoxFor(u => u.Name, new { @placeholder = "Name", @class = "form-control" })
-                    <p class="help-block">@Html.ValidationMessageFor(u => u.Name)</p>
-                </div>
-            </div>
 
-            <div class="form-group">
-                <div>
-                    @Html.Label("Department", new { @class = "control-label" })
+                                <button onclick="waitingDialog.show('Please wait...');" type="submit" class="btn btn-primary pull-right">Register</button>
+                                @if (ViewBag.SuccessMessage != null)
+                                {
+                                    <div class="alert alert-success col-sm-12">@ViewBag.SuccessMessage</div>
+                                }
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                            <div class="col-lg-6">
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                        </div>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
                 </div>
-                <div class="col-xs-3">
-                    @Html.DropDownListFor(u => u.DepartmentId, Model.GetDepartments(), new { @class = "form-control" })
-                    <p class="help-block">@Html.ValidationMessageFor(u => u.DepartmentId)</p>
-                </div>
+                <!-- /.panel -->
             </div>
-
-            <div class="form-group">
-                <div>
-                    @Html.Label("Date of birth", new { @class = "control-label" })
-                </div>
-                <div class="col-xs-3">
-                    @Html.TextBoxFor(u => u.Dob, new { @class = "form-control", @autocomplete = "false" })
-                    <p class="help-block">@Html.ValidationMessageFor(u => u.Dob)</p>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div>
-                    @Html.Label("Email", new { @class = "control-label" })
-                </div>
-                <div class="col-xs-3">
-                    @Html.TextBoxFor(u => u.Email, new { placeholder = "Email", @class = "form-control" })
-                    <p class="help-block">@Html.ValidationMessageFor(u => u.Email)</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-xs-offset-3 col-xs-9">
-                    <input type="submit" value="Register" data-loading-text="Loading..." class="btn btn-primary" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                @if (ViewBag.SuccessMessage != null)
-                {
-                    <div class="alert alert-success col-sm-12">@ViewBag.SuccessMessage</div>
-                }
-            </div>
-
+            <!-- /.col-lg-12 -->
         </div>
+        <!-- /.row -->
     </div>
     
         
 }
-<script>
-    jQuery('#Dob').datetimepicker({
-        timepicker: false,
-        mask: true, // '9999/19/39 29:59' - digit is the maximum possible for a cell
-        closeOnDateSelect: true,
-        format: 'm/d/Y'
-    });
-</script>
+
 

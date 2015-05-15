@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace SchoolApplication.Areas.Admin.Controllers
 {
@@ -10,6 +11,7 @@ namespace SchoolApplication.Areas.Admin.Controllers
 
         public ActionResult Home()
         {
+            throw new Exception("Exception is thrown");
             return View();
         }
 

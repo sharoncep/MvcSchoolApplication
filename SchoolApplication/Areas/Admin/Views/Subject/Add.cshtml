@@ -1,10 +1,122 @@
 ﻿@model SchoolApplication.Areas.Admin.Models.SubjectModel
+
 @{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Html.Partial("_AdminHome")
+
+
 @using (Html.BeginForm())
+{
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Add New Subject</h2>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    @* <div class="panel-heading">
+                        Basic Form Elements
+                    </div>*@
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @Html.ValidationSummary(true, "Can't save subject!", new { @class = "alert alert-danger" })
+
+
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    @Html.DropDownListFor(u => u.DepartmentId, Model.GetDepartment(), new { @class = "form-control selectpicker" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.DepartmentId, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Subject Code</label>
+                                    @Html.TextBoxFor(x => x.SubjectCode, new { @class = "form-control", @placeholder = "Subject Code" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.SubjectCode, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Subject Name</label>
+                                    @Html.TextBoxFor(x => x.SubjectName, new { @class = "form-control", @placeholder = "Subject Name" })
+                                    <p class="help-block">@Html.ValidationMessageFor(x => x.SubjectName, null, new { @class = "alert-warning" })</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Is Active</label>
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBoxFor(x => x.IsActive, new { @checked = true })
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button onclick="waitingDialog.show('Saving...');" type="submit" class="btn btn-primary pull-right">Save</button>
+                                @if (ViewBag.message != null)
+                                {
+                                    <div class="alert alert-success col-sm-12">@ViewBag.message</div>
+                                }
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                            <div class="col-lg-6">
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                        </div>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+
+}
+@*http://stackoverflow.com/questions/23125087/adding-textbox-dynamically-and-save-values-to-the-database-in-asp-net-mvc*@
+<script>
+    $('.selectpicker').selectpicker({
+        //style: 'btn-info',
+        liveSearch: 'true',
+        size: 5
+    });
+
+    function AddSubject() {
+        var m = $('#divSubj input:last-child').attr('SubjectName');
+        alert(m);
+        var index = 0;
+        if (m != null && m.length > 0) {
+            index = m.split('Subjects[')[1].replace('].SubjectName', '');
+            index++;
+        }
+
+        var html = '<label for=\"SubjectList_' + index + '__Name\">Name</label>' +
+            '<input id=\"SubjectList_' + index + '__Name\" class=\"text-box single-line\"' +
+            ' type=\"text\" value=\"\" name=\"Subjects[' + index + '].SubjectName\">';
+        $('#divcust').append(html);
+
+
+    };
+
+    $("#addItem").click(function () {
+        $.ajax({
+            url: this.href,
+            cache: false,
+            success: function (html) { $("#editorRows").append(html); }
+        });
+        return false;
+    });
+
+    $("a.deleteRow").live("click", function () {
+        $(this).parents("div.editorRow:first").remove();
+        return false;
+    });
+
+</script>
+
+@*@using (Html.BeginForm())
 {
     @Html.ValidationSummary()
     <fieldset>
@@ -20,4 +132,4 @@
         <input type="submit" value="Save" />
         <span style="color: green">@ViewBag.message</span>
     </fieldset>
-}
+}*@
